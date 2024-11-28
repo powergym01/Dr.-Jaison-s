@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr .jaison's</title>
+    <style>
+      #canvas1 {
+        position: fixed; /* Fixed position for background animation */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000; /* Black background color */
+        z-index: -1; /* Place canvas behind other content */
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+      .success {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 30px 15px;
+        max-width: 400px;
+        margin: 50px auto 0;
+        display: none;
+        &__icon {
+          display: block;
+          margin: auto;
+        }
+        &__message {
+          color: #757575;
+          font-size: 18px;
+          text-align: center;
+          margin-bottom: 0;
+        }
+      }
+
+      form {
+        background-color: #fff;
+        border: solid 1px lightgrey;
+        border-radius: 5px;
+        padding: 30px 15px;
+        max-width: 400px;
+        margin: 50px auto 0;
+      }
+
+      form > div {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+
+      label span {
+        color: red;
+      }
+
+      input,
+      textarea {
+        border: solid 1px lightgray;
+        border-radius: 5px;
+        padding: 10px 20px 10px 10px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        cursor: pointer;
+      }
+
+      .error-message {
+        color: red;
+        margin-top: 8px;
+        font-size: 14px;
+        display: none;
+      }
+
+      .input-error {
+        border-color: red;
+      }
+
+      .logo-container {
+        display: flex; /* Align images in a row */
+        justify-content: space-around; /* Space out logos evenly */
+        align-items: center; /* Vertically align logos */
+        padding: 20px; /* Add some space around the container */
+        background-color: #f9f9f9; /* Optional: background color */
+      }
+
+      .logo {
+        width: 100px; /* Set width of the logos */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0 10px; /* Add spacing between logos */
+        transition: transform 0.3s ease; /* Add hover effect */
+      }
+
+      .logo:hover {
+        transform: scale(1.1); /* Slight zoom-in on hover */
+      }
+
+      .registration-header {
+        text-align: center; /* Center the heading */
+        margin: 20px 0; /* Add space around the heading */
+        padding: 10px; /* Add some padding */
+        background-color: #f4f7fd; /* Light background color */
+        border-radius: 10px; /* Rounded corners */
+      }
+
+      .registration-header h1 {
+        font-size: 1rem; /* Adjust font size */
+        color: #333; /* Darker text color for contrast */
+        font-family: "Arial", sans-serif; /* Customize font */
+        font-weight: bold; /* Make it bold */
+        margin: 0; /* Remove default margin */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="success">
+      <svg
+        class="success__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="-0.5 -0.5 40 40"
+        height="80"
+        width="80"
+      >
+        <path
+          d="M19.5 39a19.5 19.5 0 1 0 0 -39 19.5 19.5 0 1 0 0 39zm8.607421875 -23.080078125L18.357421875 25.669921875c-0.716015625 0.716015625 -1.8738281250000002 0.716015625 -2.5822265625 0l-4.875 -4.875c-0.716015625 -0.716015625 -0.716015625 -1.8738281250000002 0 -2.5822265625s1.8738281250000002 -0.716015625 2.5822265625 0l3.580078125 3.580078125L25.517578125 13.330078125c0.716015625 -0.716015625 1.8738281250000002 -0.716015625 2.5822265625 0s0.716015625 1.8738281250000002 0 2.5822265625z"
+          stroke-width="1"
+          fill="green"
+        ></path>
+      </svg>
+      <p class="success__message">
+        Your message has been recieved, and our team will be in touch with you
+        shortly.
+      </p>
+    </div>
+
+    <form
+      form
+      method="post"
+      action="https://script.google.com/macros/s/AKfycbzuHoxibc6qSfSzJQi-fqi2bnRFR_bAkARH2sY-wnCgK7AqSxEdtbQ9eskdN37uL1YMUw/exec"
+      name="contact-form"
+    >
+      <div class="logo-container">
+        <img src="./Dr  Jaisons BRO (1)-03.png" alt="Logo 1" class="logo" />
+        <img src="./logo.png" alt="Logo 2" class="logo" />
+      </div>
+      <div class="registration-header">
+        <h1>Registration Form</h1>
+      </div>
+      <div>
+        <label for="firstName">First Name <span>*</span></label>
+        <input id="firstName" name="firstName" type="text" />
+        <span class="error-message"></span>
+      </div>
+      <div>
+        <label for="phone">Phone <span>*</span></label>
+        <input id="phone" name="phone" type="text" />
+        <span class="error-message"></span>
+      </div>
+      <div>
+        <label for="email">Email <span>*</span></label>
+        <input id="email" name="email" type="email" />
+        <span class="error-message"></span>
+      </div>
+      <input type="submit" value="Submit" />
+    </form>
+    <canvas id="canvas1"></canvas>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzuHoxibc6qSfSzJQi-fqi2bnRFR_bAkARH2sY-wnCgK7AqSxEdtbQ9eskdN37uL1YMUw/exec";
+      const form = document.forms["contact-form"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>
+            alert("Thank you! Your form is submitted successfully.")
+          )
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+      const canvas = document.getElementById("canvas1");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      //Image
+      var image = new Image();
+
+      let particlesArray;
+
+      class Particle {
+        constructor(x, y, directionX, directionY, size, color) {
+          this.x = x;
+          this.y = y;
+          this.directionX = directionX;
+          this.directionY = directionY;
+          this.size = size;
+          this.color = color;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+          ctx.fillStyle = "#fff";
+          ctx.fill();
+        }
+
+        update() {
+          if (this.x > canvas.width || this.x < 0) {
+            this.directionX = -this.directionX;
+          }
+          if (this.y > canvas.height || this.y < 0) {
+            this.directionY = -this.directionY;
+          }
+
+          this.x += this.directionX;
+          this.y += this.directionY;
+          this.draw();
+        }
+      }
+
+      function init() {
+        particlesArray = [];
+        let numberOfParticles = (canvas.height * canvas.width) / 30000;
+        for (let i = 0; i < numberOfParticles * 2; i++) {
+          let size = Math.random() * 3 + 1;
+          let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+          let y =
+            Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+
+          let directionX = Math.random() * 5 - 2.5;
+          let directionY = Math.random() * 5 - 2.5;
+          let color = "#56c596";
+          particlesArray.push(
+            new Particle(x, y, directionX, directionY, size, color)
+          );
+        }
+      }
+
+      function connect() {
+        let opacityValue = 1;
+        for (let a = 0; a < particlesArray.length; a++) {
+          for (let b = a; b < particlesArray.length; b++) {
+            let distance =
+              (particlesArray[a].x - particlesArray[b].x) *
+                (particlesArray[a].x - particlesArray[b].x) +
+              (particlesArray[a].y - particlesArray[b].y) *
+                (particlesArray[a].y - particlesArray[b].y);
+            if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+              opacityValue = 1 - distance / 20000;
+              ctx.strokeStyle = "rgba(237, 215, 88," + opacityValue + ")";
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+              ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+        }
+        connect();
+      }
+
+      window.addEventListener("resize", function () {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        init();
+      });
+
+      init();
+      animate();
+    </script>
+  </body>
+</html>
